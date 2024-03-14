@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Descience Open Source</title>
+    <link rel="shortcut icon" type="x-icon" href="./src/assets/title-logo.png">
+
+
+    <style>
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            border-top-color: #007bff;
+            /* Change color as needed */
+            animation: pulse .5s linear infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(0.8);
+            }
+        }
+    </style>
+
+</head>
+
+<body class="font-sans">
+
+    <div class="preloader" id="preloader">
+        <div class="loader">
+            <img src="./src/assets/logo.png">
+        </div>
+    </div>
+
+    <div class="overflow-x-hidden lg:overflow-x-visible">
+
+        <!---Nav bar-->
+        <header class="z-30 w-full py-4 bg-white fixed top-0">
+            <div class="flex items-center justify-between 2xl:mx-60 xl:mx-32 lg:mx-32">
+                <a href="/" title="DOS Home Page" class="items-center">
+                    <img src="./src/assets/transparent-logo.png" class="w-30 h-10">
+                </a>
+                <div class="flex items-center space-x-10">
+                    <div class="hidden space-x-10 md:inline-flex">
+                        <a href="#" class="font-semibold text-md mt-2">Who we are?</a>
+                        <a href="#" class="font-semibold text-md mt-2">Events & Workshop</a>
+                        <a href="#"
+                            class="px-4 py-2 rounded-full border-2 text-xl text-[#01B35B] border-[#01B35B] font-bold hover:bg-[#01B35B] hover:text-[#fff]">Join
+                            Us</a>
+                    </div>
+
+                    <div class="inline-flex md:hidden" x-data="{ open: false }">
+                        <button class="flex-none px-2 btn btn-link btn-sm" @click="open = true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true" class="w-5 h-5">
+                                <line x1="3" y1="12" x2="21" y2="12"></line>
+                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                <line x1="3" y1="18" x2="21" y2="18"></line>
+                            </svg>
+                            <span class="sr-only">Open Menu</span>
+                        </button>
+                        <div class="absolute top-0 left-0 right-0 z-50 flex flex-col p-2 pb-4 m-2 space-y-4 bg-white rounded shadow"
+                            x-show.transition="open" @click.away="open = false" x-cloak>
+                            <button class="self-end flex-none px-2 ml-2 btn btn-link btn-icon" @click="open = false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                </svg>
+                                <span class="sr-only">Close Menu</span>
+                            </button>
+                            <a href="#" class="font-semibold text-md">Who we are?</a>
+                            <a href="#" class="font-semibold text-md">Event & Workshop</a>
+                            <a href="#"
+                                class="px-4 py-2 rounded-full border-2 text-[#01B35B] border-[#01B35B] font-semibold">Join
+                                Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <section class="lg:mt-26 m-0 lg:mr-82 lg:ml-82 xl:mr-82 xl:ml-82 2xl:mr-138 2xl:ml-138">
+
+
+            <!----Hero Banner--->
+            <div
+                class="lg:sticky lg:top-20 min-h-screen flex bg-gradient-to-b from-[#1692C7] via-[#1692C7] to-[#01B35A] lg:bg-gradient-to-r lg:from-[#1692C7] lg:to-[#01B35A] lg:via-[#1692C7] lg:rounded-t-3xl">
+
+                <div class="container flex flex-col justify-around items-center mx-auto lg:flex-row">
+
+                    <!-- <div class="flex">
+
+                        -- Large screen image --
+                        <img src="./src/assets/hero-banner-vid-gif.gif" alt="Large Screen Image"
+                            class="object-contain w-96 sm:hidden lg:block xl:hidden 2xl:hidden" style="width:100%;">
+
+                        <img src="./src/assets/hero-banner-vid-gif.gif" alt="Large Screen Image"
+                            class="object-contain w-full sm:hidden lg:hidden xl:block xl:-ml-10" style="width:100%;">
+
+                        -- Extra large screen image --
+                        <video autoplay loop muted src="./src/assets/hero-banner-vid.mp4" alt="Extra Large Screen Image"
+                            class="object-contain w-full xl:h-[79vh] sm:hidden lg:hidden xl:hidden 2xl:block 2xl:ml-20"
+                            style="height: 79vh;"></video>
+                    </div>> -->
+
+                    <div class="flex 2xl:max-w-xl">
+                        <img src="./src/assets/hero-banner-vid-gif.gif" alt="Large Screen Image"
+                            class="object-contain w-full 2xl:w-full 2xl:h-[79vh]">
+                    </div>
+
+                    <div
+                        class="flex flex-col rounded-sm max-w-md lg:max-w-md xl:max-w-lg lg:text-left text-center xl:text-left 2xl:max-w-xl">
+                        <h1 class="text-white font-medium xl:text-6xl 2xl:text-7xl text-3xl" data-aos="zoom-in"
+                            data-aos-duration="1500">Aims at
+                            encouraging & promoting communication
+                        </h1>
+                        <div
+                            class="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start mt-3 xl:mt-10 lg:mx-0 mx-8">
+                            <a rel="noopener noreferrer" href="#"
+                                class="px-8 py-3 text-lg font-semibold rounded-full dark:bg-[#01B35A] text-white">Join
+                                Our Community</a>
+                            <a rel="noopener noreferrer" href="#"
+                                class="px-8 py-3 text-lg font-semibold border rounded-full dark:border-gray-100 text-white">Watch
+                                Videos</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!----Why DOS Club-->
+            <div class="min-h-screen bg-white lg:sticky lg:top-20 top-0 lg:rounded-t-3xl lg:py-12">
+                <h3 class="text-black font-bold xl:text-md lg:text-xs text-xs lg:pt-0 pt-12 text-center">• Why
+                    DOS Club?
+                </h3>
+                <h1 class="pt-5 lg:pt-2 xl:text-6xl text-center lg:text-2xl lg:font-normal font-medium text-2xl ">We
+                    help you
+                    grow your skills</h1>
+                <div class="2xl:px-36 xl:px-12 lg:px-10 2xl:pt-3 xl:pt-3 pt-5">
+                    <p class="text-center lg:px-0 xl:px-56 xl:mt-3 lg:mt-1 lg:text-sm xl:text-base px-2">Our platform is
+                        dedicated
+                        to
+                        helping you enhance your skills through the support of our vibrant community. We assist in
+                        Collaborative Learning, Expert Guidance, Personalized Support, Continuous Improvement.</p>
+                </div>
+                <section
+                    class="grid grid-cols-1 gap-20 px-4 pt-8 lg:pt-1 xl:pt-2 2xl:pt-5 mx-auto max-w-7xl lg:px-16 md:grid-cols-2 lg:grid-cols-3 lg:pb-56 xl:pb-20 2xl:pb-1">
+                    <div class="flex flex-col items-center group border-transparent hover:border-green-500 hover:border-dotted border-dotted border-2 rounded-3xl p-5"
+                        data-aos="zoom-out-up" data-aos-duration="1500">
+                        <img src="./src/assets/ask_question_img.svg"
+                            class="mb-4 lg:w-20 xl:w-32 xl:h-32 2xl:w-40 2xl:h-40 lg:h-20">
+                        <h3 class="mb-2 text-lg xl:text-2xl font-medium leading-tight text-gray-900">Ask questions</h3>
+                        <p class="text-md xl:text-base leading-relaxed text-gray-600 text-center lg:px-0 px-3">Manage
+                            all your
+                            online
+                            and offline
+                            sales in one place with a single integration, simplifying reporting</p>
+                        <img src="./src/assets/arrow_more.svg" class="hidden group-hover:block mt-5 w-5">
+                    </div>
+
+                    <div class="flex flex-col items-center group border-transparent hover:border-green-500 hover:border-dotted border-dotted border-2 rounded-3xl p-5"
+                        data-aos="zoom-out-up" data-aos-duration="1500">
+                        <img src="./src/assets/webinar_img.svg"
+                            class="mb-4 lg:w-20 xl:w-32 xl:h-32 2xl:w-40 2xl:h-40 lg:h-20">
+                        <h3 class="mb-2 text-lg xl:text-2xl font-medium leading-tight text-gray-900">Webinar</h3>
+                        <p class="text-md xl:text-base leading-relaxed text-gray-600 text-center lg:px-0 px-3">Manage
+                            all your online
+                            and offline sales in one place with a single integration, simplifying reporting</p>
+                        <img src="./src/assets/arrow_more.svg" class="hidden group-hover:block mt-5 w-5">
+                    </div>
+
+                    <div class="flex flex-col items-center group border-transparent hover:border-green-500 hover:border-dotted border-dotted border-2 rounded-3xl p-5"
+                        data-aos="zoom-out-up" data-aos-duration="1500">
+                        <img src="./src/assets/events_workshop_img.svg"
+                            class="mb-4 lg:w-20 xl:w-32 xl:h-32 2xl:w-40 2xl:h-40 lg:h-20">
+                        <h3 class="mb-2 text-lg xl:text-2xl font-medium leading-tight text-gray-900">Events & Workshop
+                        </h3>
+                        <p class="text-md xl:text-base leading-relaxed text-gray-600 text-center lg:px-0 px-3">Manage
+                            all your
+                            online
+                            and offline
+                            sales in one place with a single integration, simplifying reporting</p>
+                        <img src="./src/assets/arrow_more.svg" class="hidden group-hover:block mt-5 w-5">
+                    </div>
+                </section>
+            </div>
+
+
+            <!---Community Webinar-->
+            <div class="min-h-screen bg-[#E8F8FF] lg:sticky lg:top-20 top-0 lg:rounded-t-3xl">
+                <h3 class="text-black font-bold xl:text-md lg:text-xs text-xs pt-12 text-center">• Community Webinar
+                </h3>
+                <div class="grid grid-col-1 lg:grid-cols-3 lg:gap-4">
+                    <div class="col-span-1" data-aos="fade-right" data-aos-duration="1500">
+                        <div class="w-full px-8 xl:mt-16 mt-5 lg:text-justify text-center">
+                            <h1 class="text-black 2xl:text-6xl lg:text-4xl text-4xl font-normal lg:ml-8">
+                                Webinar
+                            </h1>
+                            <p
+                                class="2xl:text-lg xl:text-base text-sm lg:ml-8 text-black mt-5">
+                                Designed to equip aspiring professionals
+                                with the essential skills and knowledge needed to excel in today's digital landscape,
+                                this
+                                webinar promises an immersive learning experience like no other.</p>
+                            <p class="2xl:text-md xl:text-base lg:text-sm lg:mx-5 lg:ml-8 text-black mt-8"><span
+                                    class="text-[#01B35B] underline mr-2">Click here</span>to get update on our webinars
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-span-2 lg:-ml-20 xl:-ml-36 lg:-mt-10">
+                        <div class="block lg:flex justify-center items-center">
+
+                            <!--actual component start-->
+
+                            <div x-data="setup()">
+
+                                <div class="block lg:flex">
+
+                                    <div class="w-full px-6 text-center xl:ml-10 2xl:ml-5 " data-aos="zoom-in"
+                                        data-aos-duration="1500">
+                                        <div x-show="activeTab===0">
+                                            <img src="./src/assets/tab-1.png" class="lg:w-11/12 xl:max-w-2xl">
+                                            <a href=""
+                                                class="px-5 py-2 lg:-ml-20 xl:-ml-20 2xl:-ml-20 lg:-mt-10 xl:-mt-14 2xl:-mt-20 lg:absolute bg-gradient-to-r from-[#1692C7] to-[#01B35A] via-[#1692C7] rounded-3xl text-white">Register
+                                                Now</a>
+                                        </div>
+                                        <div x-show="activeTab===1">
+                                            <img src="./src/assets/tab-2.png" class="lg:w-11/12 xl:max-w-2xl">
+                                            <a href=""
+                                                class="px-5 py-2 lg:-ml-20 xl:-ml-20 2xl:-ml-20 lg:-mt-12 xl:-mt-14 2xl:-mt-20 lg:absolute bg-gradient-to-r from-[#1692C7] to-[#01B35A] via-[#1692C7] rounded-3xl text-white">Register
+                                                Now</a>
+                                        </div>
+                                        <div x-show="activeTab===2">
+                                            <img src="./src/assets/tab-3.png" class="lg:w-11/12 xl:max-w-2xl">
+                                            <a href=""
+                                                class="px-5 py-2 lg:-ml-20 xl:-ml-20 2xl:-ml-20 lg:-mt-10 xl:-mt-14 2xl:-mt-20 lg:absolute bg-gradient-to-r from-[#1692C7] to-[#01B35A] via-[#1692C7] rounded-3xl text-white">Register
+                                                Now</a>
+                                        </div>
+                                    </div>
+
+                                    <ul class="lg:w-4/6 w-full justify-center items-center lg:-ml-28 xl:-ml-32 xl:px-10 2xl:-ml-52 2xl:px-20 lg:space-y-10 xl:mt-20 lg:mt-8 mt-5 lg:px-0 px-8"
+                                        data-aos="fade-left" data-aos-duration="1500">
+                                        <li class="relative cursor-pointer py-2 px-2 text-black ml-5 space-x-2"
+                                            @click="activeTab = 0">
+                                            <span
+                                                class="absolute top-1/2 left-0 lg:-ml-3 transform -translate-y-1/2 w-2 h-2 bg-green-500 rounded-full"
+                                                :class="{ 'bg-green-500 ring-4 ring-green-300': activeTab === 0 }"></span>
+                                            <p class="font-light 2xl:text-xl xl:text-base lg:text-md">Wednesday, March
+                                                20 - 10:00 AM</p>
+                                            <h1 class="2xl:text-2xl xl:text-xl lg:text-md font-semibold">Artificial
+                                                Intelligence in CRM like
+                                                never
+                                                before</h1>
+                                        </li>
+                                        <li class="relative cursor-pointer py-2 px-2 text-black ml-5 space-x-2"
+                                            @click="activeTab = 1">
+                                            <span
+                                                class="absolute top-1/2 left-0 lg:-ml-3 transform -translate-y-1/2 w-2 h-2 bg-green-500 rounded-full"
+                                                :class="{ 'bg-green-500 ring-4 ring-green-300': activeTab === 1 }"></span>
+                                            <p class="font-light 2xl:text-xl xl:text-base lg:text-md">Wednesday, March
+                                                20 - 10:00 AM</p>
+                                            <h1 class="2xl:text-2xl xl:text-xl lg:text-md font-semibold">Basic tools and
+                                                methods before you
+                                                start UX
+                                            </h1>
+                                        </li>
+                                        <li class="relative cursor-pointer py-2 px-2 text-black ml-5 space-x-2"
+                                            @click="activeTab = 2">
+                                            <span
+                                                class="absolute top-1/2 left-0 lg:-ml-3 transform -translate-y-1/2 w-2 h-2 bg-green-500 rounded-full"
+                                                :class="{ 'bg-green-500 ring-4 ring-green-300': activeTab === 2 }"></span>
+                                            <p class="font-light 2xl:text-xl xl:text-base lg:text-md">Wednesday, March
+                                                20 - 10:00 AM</p>
+                                            <h1 class="2xl:text-2xl xl:text-xl lg:text-md font-semibold">How problem
+                                                solving & critical thinking
+                                                works?</h1>
+                                        </li>
+
+
+                                        <li class="lg:justify-start justify-center mt-5 lg:ml-10 flex space-x-3">
+                                            <img src="./src/assets/arrow_more.svg">
+                                            <a href=""
+                                                class="text-[#01B35B] underline lg:text-md xl:text-lg 2xl:text-xl">More
+                                                Webinars</a>
+                                        </li>
+                                    </ul>
+                                    <div class="pb-16"></div>
+                                </div>
+                            </div>
+
+
+                            <!--actual component end-->
+
+                        </div>
+                    </div>
+                    <script>
+                        function setup() {
+                            return {
+                                activeTab: 0
+                            };
+                        };
+                    </script>
+                </div>
+
+            </div>
+
+
+            <!---Industrial Partner-1-->
+            <div class="lg:min-h-screen bg-[#1593C4] lg:sticky lg:top-20 top-0 lg:rounded-t-3xl">
+                <section
+                    class="pt-16 lg:pt-12 mx-auto xl:mx-4 xl:px-28 2xl:px-44 lg:mx-10 2xl:mx-16 px-10 lg:py-12 lg:text-justify text-center">
+                    <h3 class="text-white 2xl:text-6xl lg:text-4xl text-4xl font-normal text-center pb-7">Collaborative
+                        Partners</h3>
+                    <h1 class="text-white text-center lg:text-2xl text-sm">Through strategic alliances with
+                        leading industry players, we leverage collective expertise, resources, and networks to
+                        tackle complex challenges and capitalize on emerging opportunities.</h1>
+                    <div class="relative flex overflow-x-hidden">
+                        <div class="whitespace-nowrap px-1">
+                            <div class="grid grid-cols-2 gap-3 lg:gap-5 text-center lg:grid-cols-4 mt-10">
+                                <div class="flex items-center justify-center p-6 rounded-xl bg-white">
+                                    <img src="./src/assets/bml-logo.png" alt="Todoist Logo"
+                                        class="block object-contain" />
+                                </div>
+                                <div class="flex items-center justify-center p-6 rounded-xl bg-white">
+                                    <img src="./src/assets/hero-logo.png" alt="Slack Logo"
+                                        class="block object-contain" />
+                                </div>
+                                <div class="flex items-center justify-center p-6 rounded-xl bg-white">
+                                    <img src="./src/assets/unamed-2-logo.png" alt="Typeform Logo"
+                                        class="block object-contain" />
+                                </div>
+                                <div class="flex items-center justify-center p-6 rounded-xl bg-white">
+                                    <img src="./src/assets/panimalar-logo.png" alt="Typeform Logo"
+                                        class="block object-contain" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-16"></div>
+                </section>
+            </div>
+
+
+            <!---Industrial Partner-2-->
+            <div class="lg:min-h-screen bg-[#01B35B] lg:sticky lg:top-20 top-0 lg:rounded-t-3xl">
+                <section
+                    class="pt-16 lg:pt-12 mx-auto xl:mx-4 xl:px-28 2xl:px-44 lg:mx-10 2xl:mx-16 px-10 lg:py-12 lg:text-justify text-center">
+                    <h3 class="text-white 2xl:text-6xl lg:text-4xl text-4xl font-normal text-center pb-7">Industrial
+                        Partners</h3>
+                    <h1 class="text-white text-center lg:text-2xl text-sm lg:px-5">Our Institutional Partnerships
+                        extend beyond mere cooperation; they represent a shared commitment to excellence,
+                        integrity, and social responsibility. Together, we create empowering individuals and
+                        communities to thrive.</h1>
+                    <div class="flex justify-center items-center mt-8">
+                        <img src="./src/assets/tds.png" alt="Centered Image"
+                            class="w-52 xl:w-72 h-auto p-6 rounded-xl bg-white">
+                    </div>
+
+                    <div class="pt-16"></div>
+                </section>
+            </div>
+
+
+            <!-----Faq---->
+            <div class="lg:min-h-screen bg-white lg:sticky lg:top-20 top-0 lg:rounded-t-3xl">
+                <section
+                    class="pt-12 xl:pt-12 lg:pt-12 mx-auto xl:mx-4 xl:px-28 2xl:px-44 lg:mx-10 2xl:mx-16 px-10 lg:py-12">
+                    <h3 class="text-black font-bold xl:text-md lg:text-xs text-xs text-center pb-5">• Common
+                        FAQ's</h3>
+                    <div class="text-center mb-3 pt-8 lg:pt-0">
+                        <h1 class="lg:text-2xl xl:text-6xl text-2xl font-normal">
+                            <span>Frequently Asked Questions</span>
+                        </h1>
+                    </div>
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 md:flex md:flex-row gap-2 lg:gap-1 lg:mt-6 justify-center">
+                        <div class="">
+                            <ul class="space-y-2 md:mx-1">
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">The Rise of Descience:</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">Founded on the principles of
+                                                openness, collaboration, and empowerment, the Descience Open Source
+                                                Community has quickly risen to prominence within the technology sector.
+                                                What began as a small group of enthusiasts sharing a passion for
+                                                open-source software has evolved into a thriving ecosystem of
+                                                developers, designers, and visionaries united by a common purpose.</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">Facilitating Cooperation:</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">The Descience Community is
+                                                based on a dedication to cooperation. Members collaborate to solve
+                                                problems together, share ideas, and push the boundaries of innovation
+                                                through mentorship programmes, coding competitions, and collaborative
+                                                projects. Along with fostering a sense of camaraderie and support among
+                                                its members, this collaborative attitude not only drives the development
+                                                of new software.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">Encouraging Innovation:</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">The DesScience Community is
+                                                at the forefront of innovation, generating cutting-edge applications and
+                                                promoting scientific research. Its members take on some of the most
+                                                important problems affecting society today by combining their wide range
+                                                of talents and knowledge. The community's projects are motivated by a
+                                                common goal of changing the world for the better, whether that be by
+                                                expanding access to technology, strengthening environmental
+                                                sustainability, or improving healthcare delivery.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">
+                                            Innovative collaboration.</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">
+                                                In summary, the Descience Open Source Community is an exemplary example
+                                                of what can be accomplished when individuals with similar interests
+                                                unite to seek a shared objective, particularly in a society where
+                                                innovation and teamwork are critical.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="">
+                            <ul class="space-y-2 md:mx-1">
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">A Hub for Education:
+                                        </span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">The Descience Community
+                                                places a high priority on education, with a focus on lifelong learning
+                                                and skill enhancement. Members get access to tools and support to
+                                                improve their technical proficiency and broaden their knowledge base
+                                                through workshops, tutorials, and collaborative learning opportunities.
+                                                This dedication to education builds the community's overall capacity
+                                                while also empowering its individual members.</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">
+                                            Future Prospects:
+                                        </span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">The DesScience Open Source
+                                                Community's influence on the technological landscape will only intensify
+                                                as it grows and changes. The community is well-positioned to influence
+                                                open-source development for years to come because of its enthusiastic
+                                                and diversified membership base, dedication to innovation and teamwork,
+                                                and common goal of a better future.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">
+                                            Innovative collaboration.</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">
+                                                In summary, the Descience Open Source Community is an exemplary example
+                                                of what can be accomplished when individuals with similar interests
+                                                unite to seek a shared objective, particularly in a society where
+                                                innovation and teamwork are critical. This community is inspiring a new
+                                                generation and revolutionising software development with its unrelenting
+                                                commitment to empowerment, transparency, and cooperation.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="border border-gray-200 hover:border-green-500 rounded-2xl px-3">
+                                    <button
+                                        class="relative flex gap-2 items-center w-full py-5 text-base font-semibold text-left md:text-lg"
+                                        aria-expanded="false" onclick="toggleFAQ(this)">
+                                        <span class="flex-1 text-sm">
+                                            Innovative collaboration.</span>
+                                        <svg class="flex-shrink-0 w-4 h-4 ml-auto fill-current" viewBox="0 0 24 24"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <!-- Plus sign SVG -->
+                                            <image class="plus-icon block" href="./src/assets/plus-1.png" width="24"
+                                                height="24" />
+                                            <!-- Minus sign SVG -->
+                                            <image class="minus-icon hidden" href="./src/assets/minus-sign.png"
+                                                width="24" height="24" />
+                                        </svg>
+                                    </button>
+                                    <div class="transition-all duration-300 ease-in-out max-h-0 overflow-hidden">
+                                        <div class="pb-5 leading-relaxed">
+                                            <div class="space-y-2 leading-relaxed text-sm">
+                                                In summary, the Descience Open Source Community is an exemplary example
+                                                of what can be accomplished when individuals with similar interests
+                                                unite to seek a shared objective, particularly in a society where
+                                                innovation and teamwork are critical.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div class="pt-16"></div>
+            </div>
+
+
+            <!---Footer Section-->
+            <div
+                class="min-h-screen lg:sticky lg:top-20 top-0 bg-gradient-to-b from-[#1692C7] via-[#1692C7] to-[#01B35A] lg:bg-gradient-to-r lg:from-[#1692C7] lg:to-[#01B35A] lg:via-[#1692C7] lg:rounded-t-3xl">
+                <h3 class="text-white font-bold pt-12 text-xs text-center">• Contact Us</h3>
+                <section class="lg:flex lg:mx-20 xl:mx-20 2xl:mx-40">
+                    <div class="flex flex-col justify-center w-full p-8 xl:pl-16 lg:w-1/2" data-aos="zoom-in"
+                        data-aos-duration="1500">
+                        <div>
+                            <img src="./src/assets/subscribe-img.png" class="w-full h-full">
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col justify-center w-full p-8 pt-0 lg:w-1/2 lg:px-12 xl:px-14 2xl:px-24">
+                        <form>
+                            <div class="-mx-2 md:items-center" data-aos="fade-right" data-aos-duration="1500">
+                                <div class="px-2">
+                                    <h1 class="text-white text-xl">Ready to take your career to the next level?</h1>
+                                    <p class="text-white text-lg font-light mt-5">Subscribe now and become part of our
+                                        vibrant Community!</p>
+                                </div>
+                            </div>
+
+                            <div class="w-full mt-10" data-aos="fade-right" data-aos-duration="1500">
+                                <div
+                                    class="flex px-4 py-1 mt-2  bg-white/20 border border-gray-200 rounded-full dark:text-gray-300 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring">
+                                    <input type="text" placeholder="Enter your email ID"
+                                        class="w-full text-white placeholder-white/80 appearance-none focus:outline-none bg-transparent">
+                                    <a href="/"><img src="./src/assets/arrow_subscribe 1.png" class=""></a>
+                                </div>
+                            </div>
+
+                            <div class="w-full mt-16" data-aos="fade-right" data-aos-duration="1500">
+                                <h2 class="text-lg text-white opacity-80">For more connections</h2>
+                                <div class="mt-3">
+                                    <div class="flex space-x-2 mt-3">
+                                        <img src="./src/assets/mail.svg">
+                                        <p class="text-white">Support@dosclub.com</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-3">
+                                        <img src="./src/assets/linkedin.svg">
+                                        <p class="text-white">LinkedIn</p>
+                                    </div>
+                                    <div class="flex space-x-2 mt-3">
+                                        <img src="./src/assets/Mighty_Networks.svg">
+                                        <p class="text-white">Mighty Networks</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </section>
+
+                <div class="text-center lg:p-4 lg:mt-10 lg:mx-32 xl:mx-28 2xl:mx-56">
+                    <h2 class="text-white opacity-50">@ 2024 Descience Open Source Club. All rights reserved.</h2>
+                </div>
+            </div>
+
+
+        </section>
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/kutty.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        const navLinks = document.querySelector('.nav-links');
+
+        function onToggleMenu(e) {
+            e.name = e.name === 'menu' ? 'close' : 'menu';
+            navLinks.classList.toggle('top-[10%]');
+            navLinks.classList.toggle('invisible'); // Toggle visibility
+        }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const preloader = document.getElementById("preloader");
+            // Remove the preloader after a short delay (e.g., 500 milliseconds)
+            setTimeout(function () {
+                preloader.style.display = "none";
+            }, 100);
+        });
+    </script>
+    <script>
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const plusIcon = button.querySelector('.plus-icon');
+            const minusIcon = button.querySelector('.minus-icon');
+            button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") === "false" ? "true" : "false");
+            content.style.maxHeight = button.getAttribute("aria-expanded") === "true" ? content.scrollHeight + "px" : "0";
+
+            // Toggle the visibility of plus and minus icons
+            if (button.getAttribute("aria-expanded") === "true") {
+                plusIcon.classList.add('hidden');
+                minusIcon.classList.remove('hidden');
+            } else {
+                plusIcon.classList.remove('hidden');
+                minusIcon.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+
+
+</html>
